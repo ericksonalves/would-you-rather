@@ -12,6 +12,7 @@
 
 .notice {
   background-color: #39c0ed;
+  border-color: #262626;
   border-radius: 5px 5px 0px 0px;
   border-style: solid;
   border-width: 1px;
@@ -20,6 +21,7 @@
 }
 
 .sign-in {
+  border-color: #262626;
   border-radius: 0px 0px 5px 5px;
   border-style: solid;
   border-width: 1px;
