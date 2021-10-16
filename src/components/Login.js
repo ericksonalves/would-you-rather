@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import './Login.css';
 import * as API from '../data/database';
+import logo from '../assets/logo.svg';
 
 export default class Login extends Component {
   state = {
@@ -24,16 +25,24 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className='Login'>
-        <h3>Welcome to the Would You Rather app!</h3>
+      <div className='login'>
+        <div className='notice'>
+          <p className='welcome-notice'>Welcome to the Would You Rather app!</p>
 
-        <h5>Please sign in to continue</h5>
+          <p className='sign-in-notice'>Please sign in to continue</p>
+        </div>
 
-        <DropdownButton title='Sign in'>
-          {this.state.users.map((user) => (
-            <Dropdown.Item>{user.name}</Dropdown.Item>
-          ))}
-        </DropdownButton>
+        <div className='sign-in'>
+          <img src={logo} alt='Logo' className='logo' />
+
+          <p className='sign-in-message'>Sign in</p>
+
+          <DropdownButton title='Select user'>
+            {this.state.users.map((user) => (
+              <Dropdown.Item>{user.name}</Dropdown.Item>
+            ))}
+          </DropdownButton>
+        </div>
       </div>
     );
   }

@@ -1,3 +1,47 @@
-.Login {
+.login {
+  margin: auto;
+  margin-top: 10px;
+  padding: 10px;
   text-align: center;
+  width: 600px;
+}
+
+.logo {
+  width: 50%;
+}
+
+.notice {
+  background-color: #39c0ed;
+  border-radius: 5px 5px 0px 0px;
+  border-style: solid;
+  border-width: 1px;
+  margin: -10px;
+  width: 600px;
+}
+
+.sign-in {
+  border-radius: 0px 0px 5px 5px;
+  border-style: solid;
+  border-width: 1px;
+  margin: -10px;
+  margin-top: 9px;
+  padding: 10px;
+  width: 600px;
+}
+
+.sign-in-message {
+  color: #1266f1;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.sign-in-notice {
+  color: #fbfbfb;
+  font-size: medium;
+}
+
+.welcome-notice {
+  color: #fbfbfb;
+  font-size: larger;
+  font-weight: bold;
 }
