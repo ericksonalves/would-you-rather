@@ -1,28 +1,10 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import './Login.css';
-import * as API from '../data/database';
 import logo from '../assets/logo.svg';
 
-export default class Login extends Component {
-  state = {
-    users: [],
-  };
-
-  componentDidMount() {
-    API._getUsers().then((users) => this.setUsers(users));
-  }
-
-  setUsers = (users) => {
-    const values = Object.keys(users).map(function (key) {
-      return users[key];
-    });
-
-    this.setState(() => ({
-      users: values,
-    }));
-  };
-
+class Login extends Component {
   render() {
     return (
       <div className='login'>
@@ -38,8 +20,8 @@ export default class Login extends Component {
           <p className='sign-in-message'>Sign in</p>
 
           <DropdownButton title='Select user'>
-            {this.state.users.map((user) => (
-              <Dropdown.Item>{user.name}</Dropdown.Item>
+            {this.props.users.map((user) => (
+              <Dropdown.Item key={user.id}>{user.name}</Dropdown.Item>
             ))}
           </DropdownButton>
         </div>
@@ -47,3 +29,7 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect((state) => ({
+  users: state.users,
+}))(Login);
