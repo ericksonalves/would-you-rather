@@ -1,5 +1,4 @@
 import * as API from '../data/database';
-import user from '../reducers/user';
 import { dictToList } from '../utils/dataUtils';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
