@@ -2,8 +2,17 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import './Home.css';
+import { handleSetLoggedUser } from '../actions/user';
 
 class Home extends Component {
+  handleSelection = (eventKey) => {
+    if (eventKey === 'logout') {
+      const { dispatch } = this.props;
+
+      dispatch(handleSetLoggedUser(null));
+    }
+  };
+
   render() {
     return (
       <div>
@@ -19,7 +28,9 @@ class Home extends Component {
               <Nav.Link href='#' disabled>
                 Hello, {this.props.user.name}
               </Nav.Link>
-              <Nav.Link href='#logout'>Logout</Nav.Link>
+              <Nav.Link eventKey='logout' onSelect={this.handleSelection}>
+                Logout
+              </Nav.Link>
             </Nav>
           </Container>
         </Navbar>

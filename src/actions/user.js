@@ -11,6 +11,6 @@ export function handleSetLoggedUser(user) {
   return (dispatch) => {
     dispatch(setLoggedUserAction(user));
 
-    localStorage.setItem('userId', user.id);
+    localStorage.setItem('userId', user?.id);
   };
 }

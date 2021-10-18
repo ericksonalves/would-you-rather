@@ -16,10 +16,11 @@ class App extends Component {
       return <h3>Loading...</h3>;
     }
 
-    return <ConnectedLogin />;
+    return this.props.user !== null ? <ConnectedHome /> : <ConnectedLogin />;
   }
 }
 
 export default connect((state) => ({
   loading: state.loading,
+  user: state.user,
 }))(App);
