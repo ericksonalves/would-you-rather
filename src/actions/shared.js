@@ -1,5 +1,6 @@
 import * as API from '../data/database';
-import { dictToList } from '../utils/dataUtils';
+import * as storageUtils from '../data/storage';
+import { dictToList, findMatchingUserId } from '../utils/dataUtils';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 
@@ -16,9 +17,8 @@ export function handleInitialData() {
     return API._getUsers().then((usersDict) => {
       const users = dictToList(usersDict);
 
-      const userId = localStorage.getItem('userId');
-      const matchedUser = users.find((u) => u.id === userId);
-      const user = matchedUser !== undefined ? matchedUser : null;
+      const userId = storageUtils.getUserId();
+      const user = findMatchingUserId(userId, users);
 
       dispatch(receiveDataAction(users, user));
     });
