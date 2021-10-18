@@ -1,10 +1,20 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { handleSetLoggedUser } from '../actions/user';
 import './Login.css';
 import logo from '../assets/logo.svg';
 
 class Login extends Component {
+  handleSelection = (eventKey) => {
+    const { dispatch, users } = this.props;
+
+    const userId = eventKey;
+    const user = users.find((u) => u.id === userId);
+
+    dispatch(handleSetLoggedUser(user));
+  };
+
   render() {
     return (
       <div className='login'>
@@ -19,9 +29,11 @@ class Login extends Component {
 
           <p className='sign-in-message'>Sign in</p>
 
-          <DropdownButton title='Select user'>
+          <DropdownButton title='Select user' onSelect={this.handleSelection}>
             {this.props.users.map((user) => (
-              <Dropdown.Item key={user.id}>{user.name}</Dropdown.Item>
+              <Dropdown.Item eventKey={user.id} key={user.id}>
+                {user.name}
+              </Dropdown.Item>
             ))}
           </DropdownButton>
         </div>
@@ -32,4 +44,5 @@ class Login extends Component {
 
 export default connect((state) => ({
   users: state.users,
+  user: state.user,
 }))(Login);

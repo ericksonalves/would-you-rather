@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
+import ConnectedHome from './Home';
 import ConnectedLogin from './Login';
 
 class App extends Component {

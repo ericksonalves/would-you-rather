@@ -1,12 +1,14 @@
 import * as API from '../data/database';
+import user from '../reducers/user';
 import { dictToList } from '../utils/dataUtils';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 
-function receiveDataAction(users) {
+function receiveDataAction(users, user) {
   return {
     type: RECEIVE_DATA,
     users,
+    user,
   };
 }
 
@@ -15,7 +17,11 @@ export function handleInitialData() {
     return API._getUsers().then((usersDict) => {
       const users = dictToList(usersDict);
 
-      dispatch(receiveDataAction(users));
+      const userId = localStorage.getItem('userId');
+      const matchedUser = users.find((u) => u.id === userId);
+      const user = matchedUser !== undefined ? matchedUser : null;
+
+      dispatch(receiveDataAction(users, user));
     });
   };
 }
