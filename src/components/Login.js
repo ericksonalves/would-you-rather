@@ -42,7 +42,11 @@ class Login extends Component {
   }
 }
 
-export default connect((state) => ({
-  users: state.users,
-  user: state.user,
-}))(Login);
+function mapStateToProps({ users, user }) {
+  return {
+    users,
+    user,
+  };
+}
+
+export default connect(mapStateToProps)(Login);

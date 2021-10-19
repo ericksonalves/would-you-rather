@@ -26,7 +26,11 @@ class App extends Component {
   }
 }
 
-export default connect((state) => ({
-  loading: state.loading,
-  user: state.user,
-}))(App);
+function mapStateToProps({ loading, user }) {
+  return {
+    loading,
+    user,
+  };
+}
+
+export default connect(mapStateToProps)(App);
