@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tab, Tabs } from 'react-bootstrap';
-import Poll from '../question/Poll';
+import PollPreview from '../question/PollPreview';
 import {
   getQuestionPreview,
   findMatchingUserId,
@@ -28,7 +28,7 @@ class Home extends Component {
 
       return (
         <div className='home-poll'>
-          <Poll
+          <PollPreview
             answered={answered}
             author={author.name}
             avatar={author.avatarURL}

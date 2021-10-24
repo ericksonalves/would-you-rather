@@ -1,4 +1,4 @@
-.poll-box {
+.poll-preview-box {
   border-color: #e3f2fd;
   border-radius: 5px;
   border-style: solid;
@@ -7,7 +7,7 @@
   height: 190px;
 }
 
-.poll-author {
+.poll-preview-author {
   border-color: #e3f2fd;
   border-radius: 5px 5px 0px 0px;
   border-style: solid;
@@ -18,25 +18,25 @@
   padding: 10px;
 }
 
-.poll-author-avatar {
+.poll-preview-author-avatar {
   align-self: center;
 }
 
-.poll-author-avatar img {
+.poll-preview-author-avatar img {
   width: 50%;
 }
 
-.poll-details {
+.poll-preview-details {
   display: flex;
   flex-wrap: wrap;
 }
 
-.poll-divider {
+.poll-preview-divider {
   border-left: 2px solid #e3f2fd;
   margin: 0px 10px 0px 10px;
 }
 
-.poll-preview {
+.poll-preview-snapshot {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@
   align-self: stretch;
 }
 
-.poll-would-you-rather {
+.poll-preview-would-you-rather {
   font-size: medium;
   font-weight: bold;
 }
