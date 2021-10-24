@@ -1,0 +1,16 @@
+.user-details-question-count {
+  font-size: small;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+.user-details-question-info {
+  display: flex;
+  flex-direction: row;
+  margin: 0px 10px 0px 10px;
+}
+
+.user-details-question-label {
+  font-size: small;
+  font-weight: bold;
+}

@@ -1,0 +1,18 @@
+.user-details-box {
+  width: 300px;
+}
+
+.user-details-divider {
+  border-top: 2px solid #e3f2fd;
+  margin: 5px 0px 5px 0px;
+}
+
+.user-details-name {
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0px 10px 0px 10px;
+}
+
+.user-details-questions-info {
+  margin: 10px 0px 0px 0px;
+}

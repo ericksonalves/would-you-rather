@@ -1,0 +1,25 @@
+.leaderboard-box {
+  border-color: #e3f2fd;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+  padding: 10px;
+  width: 500px;
+}
+
+.leaderboard-divider {
+  border-left: 2px solid #e3f2fd;
+  margin: 0px 10px 0px 10px;
+}
+
+.leaderboard-ranking {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0px 0px 0px;
+}

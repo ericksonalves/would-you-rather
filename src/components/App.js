@@ -1,9 +1,11 @@
 import { Component, Fragment } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { LoadingBar } from 'react-redux-loading';
 import { handleInitialData } from '../actions/shared';
-import ConnectedHome from './Home';
+import ConnectedNavigationBar from './navigation/NavigationBar';
 import ConnectedLogin from './Login';
+import ConnectedLeaderboard from './leaderboard/Leaderboard';
 
 class App extends Component {
   componentDidMount() {
@@ -14,14 +16,19 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <LoadingBar />
-        {this.props.loading === true ? null : this.props.user !== null ? (
-          <ConnectedHome />
-        ) : (
-          <ConnectedLogin />
-        )}
-      </Fragment>
+      <Router>
+        <Fragment>
+          <LoadingBar />
+          {this.props.loading === true ? null : this.props.user !== null ? (
+            <div>
+              <ConnectedNavigationBar />
+              <Route path='/leaderboard' component={ConnectedLeaderboard} />
+            </div>
+          ) : (
+            <ConnectedLogin />
+          )}
+        </Fragment>
+      </Router>
     );
   }
 }
