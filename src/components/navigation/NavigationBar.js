@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import './NavigationBar.css';
 import { handleSetLoggedUser } from '../../actions/user';
 
@@ -18,11 +19,17 @@ class NavigationBar extends Component {
       <div>
         <Navbar bg='primary' variant='dark'>
           <Container>
-            <Navbar.Brand href=''>Would You Rather</Navbar.Brand>
+            <Navbar.Brand>Would You Rather</Navbar.Brand>
             <Nav className='me-auto'>
-              <Nav.Link href=''>Home</Nav.Link>
-              <Nav.Link href='new-question'>New Question</Nav.Link>
-              <Nav.Link href='leaderboard'>Leaderboard</Nav.Link>
+              <LinkContainer to='/'>
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/new-question'>
+                <Nav.Link>New Question</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to='/leaderboard'>
+                <Nav.Link>Leaderboard</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Nav>
               <Nav.Link href='#' disabled>
