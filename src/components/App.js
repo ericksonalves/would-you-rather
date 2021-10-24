@@ -7,6 +7,7 @@ import ConnectedNavigationBar from './navigation/NavigationBar';
 import ConnectedLogin from './Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
 import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
+import ConnectedHome from './home/Home';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
           {this.props.loading === true ? null : this.props.user !== null ? (
             <div>
               <ConnectedNavigationBar />
+              <Route exact path='/' component={ConnectedHome} />
               <Route path='/leaderboard' component={ConnectedLeaderboard} />
               <Route
                 path='/new-question'

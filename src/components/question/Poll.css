@@ -1,0 +1,54 @@
+.poll-box {
+  border-color: #e3f2fd;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+  height: 190px;
+}
+
+.poll-author {
+  border-color: #e3f2fd;
+  border-radius: 5px 5px 0px 0px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: medium;
+  font-weight: bold;
+  margin: -11px -11px 5px -11px;
+  padding: 10px;
+}
+
+.poll-author-avatar {
+  align-self: center;
+}
+
+.poll-author-avatar img {
+  width: 50%;
+}
+
+.poll-details {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.poll-divider {
+  border-left: 2px solid #e3f2fd;
+  margin: 0px 10px 0px 10px;
+}
+
+.poll-preview {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 125px;
+}
+
+.poll-preview button {
+  align-self: stretch;
+}
+
+.poll-would-you-rather {
+  font-size: medium;
+  font-weight: bold;
+}

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import UserScore from './UserScore';
-import UserAvatar from './UserAvatar';
+import UserAvatar from '../user/UserAvatar';
 import UserDetails from './UserDetails';
 import { userScoreComparator } from '../../utils/dataUtils';
 import './Leaderboard.css';
