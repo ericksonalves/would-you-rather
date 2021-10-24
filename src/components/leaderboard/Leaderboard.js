@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import UserScore from './UserScore';
+import UserScore from '../user/UserScore';
 import UserAvatar from '../user/UserAvatar';
-import UserDetails from './UserDetails';
+import UserDetails from '../user/UserDetails';
 import { userScoreComparator } from '../../utils/dataUtils';
 import './Leaderboard.css';
 
