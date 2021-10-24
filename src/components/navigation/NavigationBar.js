@@ -46,7 +46,11 @@ class NavigationBar extends Component {
   }
 }
 
-export default connect((state) => ({
-  users: state.users,
-  user: state.user,
-}))(NavigationBar);
+function mapStateToProps({ users, user }) {
+  return {
+    users,
+    user,
+  };
+}
+
+export default connect(mapStateToProps)(NavigationBar);
