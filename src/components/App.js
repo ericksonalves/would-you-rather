@@ -8,6 +8,7 @@ import ConnectedLogin from './Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
 import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
+import ConnectedPollResult from './question/PollResult';
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
                 path='/new-question'
                 component={ConnectedCreateNewQuestion}
               />
+              <Route path='/results/:id' component={ConnectedPollResult} />
             </div>
           ) : (
             <ConnectedLogin />

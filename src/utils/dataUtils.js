@@ -10,6 +10,13 @@ export function getQuestionPreview(question) {
   return `...${optionOne} or...`;
 }
 
+export function findMatchingQuestionId(questionId, questions) {
+  const matchedQuestion = questions.find((q) => q.id === questionId);
+  const question = matchedQuestion !== undefined ? matchedQuestion : null;
+
+  return question;
+}
+
 export function findMatchingUserId(userId, users) {
   const matchedUser = users.find((u) => u.id === userId);
   const user = matchedUser !== undefined ? matchedUser : null;

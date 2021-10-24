@@ -22,15 +22,17 @@ class Home extends Component {
     );
   };
 
-  renderQuestions = (questions) => {
+  renderQuestions = (answered, questions) => {
     return questions.map((question) => {
       const author = findMatchingUserId(question.author, this.props.users);
 
       return (
         <div className='home-poll'>
           <Poll
+            answered={answered}
             author={author.name}
             avatar={author.avatarURL}
+            pollId={question.id}
             questionPreview={getQuestionPreview(question)}
           />
         </div>
@@ -43,10 +45,10 @@ class Home extends Component {
       <div className='home-box'>
         <Tabs defaultActiveKey='unanswered' className='mb-3'>
           <Tab eventKey='unanswered' title='Unanswered Questions'>
-            {this.renderQuestions(this.getUnansweredQuestions())}
+            {this.renderQuestions(false, this.getUnansweredQuestions())}
           </Tab>
           <Tab eventKey='answered' title='Answered Questions'>
-            {this.renderQuestions(this.getAnsweredQuestions())}
+            {this.renderQuestions(true, this.getAnsweredQuestions())}
           </Tab>
         </Tabs>
       </div>

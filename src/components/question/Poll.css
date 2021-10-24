@@ -44,7 +44,12 @@
   height: 125px;
 }
 
-.poll-preview button {
+.poll-preview-link {
+  display: flex;
+  flex-direction: column;
+}
+
+.poll-preview-link > *:first-child {
   align-self: stretch;
 }
 

@@ -1,4 +1,5 @@
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import UserAvatar from '../user/UserAvatar';
 import './Poll.css';
 
@@ -14,7 +15,16 @@ function Poll(props) {
         <div className='poll-preview'>
           <div className='poll-would-you-rather'>Would you rather</div>
           <div className='poll-question-preview'>{props.questionPreview}</div>
-          <Button variant='primary'>View Poll</Button>
+          <Link
+            className='poll-preview-link'
+            to={
+              props.answered === true
+                ? `/results/${props.pollId}`
+                : `/poll/${props.pollId}`
+            }
+          >
+            <Button variant='primary'>View Poll</Button>
+          </Link>
         </div>
       </div>
     </div>
