@@ -21,7 +21,7 @@ class NavigationBar extends Component {
             <Navbar.Brand href=''>Would You Rather</Navbar.Brand>
             <Nav className='me-auto'>
               <Nav.Link href=''>Home</Nav.Link>
-              <Nav.Link href='#new-question'>New Question</Nav.Link>
+              <Nav.Link href='new-question'>New Question</Nav.Link>
               <Nav.Link href='leaderboard'>Leaderboard</Nav.Link>
             </Nav>
             <Nav>

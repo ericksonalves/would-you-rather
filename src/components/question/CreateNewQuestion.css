@@ -1,0 +1,40 @@
+.new-question-box {
+  border-color: #e3f2fd;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 10px;
+  text-align: center;
+  width: 500px;
+}
+
+.new-question-divider {
+  border-top: 2px solid #e3f2fd;
+  margin: 5px 0px 5px 0px;
+}
+
+.new-question-form-control {
+  margin: 10px 0px 10px 0px;
+}
+
+.new-question-header {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.new-question-label {
+  font-size: medium;
+  font-weight: bold;
+  text-align: start;
+}
+
+.new-question-would-you-rather {
+  font-size: larger;
+  font-weight: bold;
+  margin: 10px 0px 0px 0px;
+  text-align: start;
+}

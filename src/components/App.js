@@ -6,6 +6,7 @@ import { handleInitialData } from '../actions/shared';
 import ConnectedNavigationBar from './navigation/NavigationBar';
 import ConnectedLogin from './Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
+import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,10 @@ class App extends Component {
             <div>
               <ConnectedNavigationBar />
               <Route path='/leaderboard' component={ConnectedLeaderboard} />
+              <Route
+                path='/new-question'
+                component={ConnectedCreateNewQuestion}
+              />
             </div>
           ) : (
             <ConnectedLogin />
