@@ -10,3 +10,15 @@ export function findMatchingUserId(userId, users) {
 
   return user;
 }
+
+export function userScoreComparator(userA, userB) {
+  const answeredQuestionsByA = Object.keys(userA.answers).length;
+  const createdQuestionsByA = userA.questions.length;
+  const scoreA = answeredQuestionsByA + createdQuestionsByA;
+
+  const answeredQuestionsByB = Object.keys(userB.answers).length;
+  const createdQuestionsByB = userB.questions.length;
+  const scoreB = answeredQuestionsByB + createdQuestionsByB;
+
+  return scoreB - scoreA;
+}
