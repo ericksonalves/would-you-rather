@@ -10,18 +10,6 @@ import {
 import './Home.css';
 
 class Home extends Component {
-  getAnsweredQuestions = () => {
-    return this.props.questions.filter((question) =>
-      hasAnsweredQuestion(this.props.user.id, question)
-    );
-  };
-
-  getUnansweredQuestions = () => {
-    return this.props.questions.filter(
-      (question) => !hasAnsweredQuestion(this.props.user.id, question)
-    );
-  };
-
   renderQuestions = (answered, questions) => {
     return questions.map((question) => {
       const author = findMatchingUserId(question.author, this.props.users);
@@ -45,10 +33,10 @@ class Home extends Component {
       <div className='home-box'>
         <Tabs defaultActiveKey='unanswered' className='mb-3'>
           <Tab eventKey='unanswered' title='Unanswered Questions'>
-            {this.renderQuestions(false, this.getUnansweredQuestions())}
+            {this.renderQuestions(false, this.props.unansweredQuestions)}
           </Tab>
           <Tab eventKey='answered' title='Answered Questions'>
-            {this.renderQuestions(true, this.getAnsweredQuestions())}
+            {this.renderQuestions(true, this.props.answeredQuestions)}
           </Tab>
         </Tabs>
       </div>
@@ -57,7 +45,15 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, user, users }) {
-  return { questions, user, users };
+  const answeredQuestions = questions.filter((question) =>
+    hasAnsweredQuestion(user.id, question)
+  );
+
+  const unansweredQuestions = questions.filter(
+    (question) => !hasAnsweredQuestion(user.id, question)
+  );
+
+  return { questions, user, users, answeredQuestions, unansweredQuestions };
 }
 
 export default connect(mapStateToProps)(Home);
