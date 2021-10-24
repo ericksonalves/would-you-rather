@@ -5,23 +5,23 @@ import { findMatchingUserId } from '../utils/dataUtils';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 
-function receiveDataAction(users, user) {
+function receiveDataAction(questions, users, user) {
   return {
     type: RECEIVE_DATA,
+    questions,
     users,
     user,
   };
 }
 
 export function handleInitialData() {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(showLoading());
-    return API.getUsers().then((users) => {
-      const userId = storageUtils.getUserId();
-      const user = findMatchingUserId(userId, users);
-
-      dispatch(receiveDataAction(users, user));
-      dispatch(hideLoading());
-    });
+    const questions = await API.getQuestions();
+    const users = await API.getUsers();
+    const userId = storageUtils.getUserId();
+    const user = findMatchingUserId(userId, users);
+    dispatch(receiveDataAction(questions, users, user));
+    dispatch(hideLoading());
   };
 }

@@ -4,11 +4,25 @@ export function dictToList(dict) {
   });
 }
 
+export function getQuestionPreview(question) {
+  const optionOne = question.optionOne.text;
+
+  return `...${optionOne} or...`;
+}
+
 export function findMatchingUserId(userId, users) {
   const matchedUser = users.find((u) => u.id === userId);
   const user = matchedUser !== undefined ? matchedUser : null;
 
   return user;
+}
+
+export function hasAnsweredQuestion(userId, question) {
+  const voters = new Set(
+    question.optionOne.votes.concat(question.optionTwo.votes)
+  );
+
+  return voters.has(userId);
 }
 
 export function userScoreComparator(userA, userB) {
