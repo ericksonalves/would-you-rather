@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { handleSetLoggedUser } from '../actions/user';
+import { handleSetLoggedUser } from '../../actions/user';
 import './Login.css';
-import logo from '../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 
 class Login extends Component {
   handleSelection = (eventKey) => {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { LoadingBar } from 'react-redux-loading';
 import { handleInitialData } from '../actions/shared';
 import ConnectedNavigationBar from './navigation/NavigationBar';
-import ConnectedLogin from './Login';
+import ConnectedLogin from './login/Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
 import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
