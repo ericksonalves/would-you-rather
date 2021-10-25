@@ -12,6 +12,10 @@
   width: 500px;
 }
 
+.new-question-box .btn {
+  width: 100%;
+}
+
 .new-question-divider {
   border-top: 2px solid #e3f2fd;
   margin: 5px 0px 5px 0px;
