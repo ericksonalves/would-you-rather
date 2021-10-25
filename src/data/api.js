@@ -12,3 +12,8 @@ export async function getUsers() {
   const users = dictToList(usersDict);
   return users;
 }
+
+export async function saveQuestion(question) {
+  const formattedQuestion = await database._saveQuestion(question);
+  return formattedQuestion;
+}
