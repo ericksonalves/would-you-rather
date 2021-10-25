@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
+import UserAvatar from '../user/UserAvatar';
 import {
   findMatchingQuestionId,
   findMatchingUserId,
@@ -9,12 +11,38 @@ import './Poll.css';
 class Poll extends Component {
   render() {
     return (
-      <div>
-        <div>Poll: {this.props.id}</div>
-        <div>Asked by: {this.props.author.name}</div>
-        <div>Would you rather</div>
-        <div>#1: {this.props.firstOption}</div>
-        <div>#2: {this.props.secondOption}</div>
+      <div className='poll-box'>
+        <div className='poll-author'>{this.props.author.name} asks:</div>
+        <div className='poll-details'>
+          <div className='poll-author-avatar'>
+            <UserAvatar avatar={this.props.author.avatarURL} />
+          </div>
+          <div className='poll-divider' />
+          <div className='poll-voting-details'>
+            <div className='poll-would-you-rather'>Would you rather</div>
+            <div className='poll-voting-box'>
+              <Form>
+                <Form.Group className='mb-3' controlId='pollVotingForm'>
+                  <Form.Check
+                    type='radio'
+                    label={this.props.question.optionOne.text}
+                    name='vote'
+                    id='optionOne'
+                  />
+                  <Form.Check
+                    type='radio'
+                    name='vote'
+                    label={this.props.question.optionTwo.text}
+                    id='optionTwo'
+                  />
+                  <Button variant='primary' type='submit'>
+                    Submit
+                  </Button>
+                </Form.Group>
+              </Form>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
