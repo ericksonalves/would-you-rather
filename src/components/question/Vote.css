@@ -25,6 +25,11 @@
   padding: 10px;
 }
 
+.vote-icon {
+  align-self: flex-end;
+  color: #1266f1;
+}
+
 .vote-option {
   font-size: small;
   font-weight: bold;

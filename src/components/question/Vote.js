@@ -1,4 +1,5 @@
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import { BsCheckLg } from 'react-icons/bs';
 import './Vote.css';
 
 function Vote(props) {
@@ -10,6 +11,7 @@ function Vote(props) {
         props.highlighted === true ? 'vote-box-highlighted' : 'vote-box'
       }
     >
+      {props.highlighted === true && <BsCheckLg className='vote-icon' />}
       <div
         className={
           props.highlighted === true ? 'vote-option-highlighted' : 'vote-option'
