@@ -6,12 +6,13 @@ import {
   getQuestionPreview,
   findMatchingUserId,
   hasAnsweredQuestion,
+  questionComparator,
 } from '../../utils/dataUtils';
 import './Home.css';
 
 class Home extends Component {
   renderQuestions = (answered, questions) => {
-    return questions.map((question) => {
+    return questions.sort(questionComparator).map((question) => {
       const author = findMatchingUserId(question.author, this.props.users);
 
       return (
@@ -29,6 +30,8 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.props.questions);
+
     return (
       <div className='home-box'>
         <Tabs defaultActiveKey='unanswered' className='mb-3'>

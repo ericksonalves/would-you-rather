@@ -32,6 +32,10 @@ export function hasAnsweredQuestion(userId, question) {
   return voters.has(userId);
 }
 
+export function questionComparator(questionA, questionB) {
+  return questionB.timestamp - questionA.timestamp;
+}
+
 export function userScoreComparator(userA, userB) {
   const answeredQuestionsByA = Object.keys(userA.answers).length;
   const createdQuestionsByA = userA.questions.length;

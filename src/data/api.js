@@ -13,6 +13,10 @@ export async function getUsers() {
   return users;
 }
 
+export function saveAnswer(answerInfo) {
+  database._saveQuestionAnswer(answerInfo).catch((err) => console.error(err));
+}
+
 export async function saveQuestion(question) {
   const formattedQuestion = await database._saveQuestion(question);
   return formattedQuestion;
