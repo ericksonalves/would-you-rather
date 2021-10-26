@@ -24,7 +24,7 @@ class NavigationBar extends Component {
               <LinkContainer to='/'>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to='/new-question'>
+              <LinkContainer to='/add'>
                 <Nav.Link>New Question</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/leaderboard'>

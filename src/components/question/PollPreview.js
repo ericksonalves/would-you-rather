@@ -17,14 +17,7 @@ function PollPreview(props) {
           <div className='poll-preview-question-preview'>
             {props.questionPreview}
           </div>
-          <Link
-            className='poll-preview-link'
-            to={
-              props.answered === true
-                ? `/results/${props.pollId}`
-                : `/poll/${props.pollId}`
-            }
-          >
+          <Link className='poll-preview-link' to={`/questions/${props.pollId}`}>
             <Button variant='primary'>View Poll</Button>
           </Link>
         </div>

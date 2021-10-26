@@ -10,6 +10,7 @@ import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
 import ConnectedPollResult from './question/PollResult';
 import ConnectedPoll from './question/Poll';
+import { hasAnsweredQuestion } from '../utils/dataUtils';
 
 class App extends Component {
   componentDidMount() {
@@ -28,12 +29,23 @@ class App extends Component {
               <ConnectedNavigationBar />
               <Route exact path='/' component={ConnectedHome} />
               <Route path='/leaderboard' component={ConnectedLeaderboard} />
+              <Route path='/add' component={ConnectedCreateNewQuestion} />
               <Route
-                path='/new-question'
-                component={ConnectedCreateNewQuestion}
+                path='/questions/:id'
+                render={(props) => {
+                  const questionId = props.match.params.id;
+
+                  const question = this.props.questions.find(
+                    (q) => q.id === questionId
+                  );
+
+                  return hasAnsweredQuestion(this.props.user.id, question) ? (
+                    <ConnectedPollResult {...props} />
+                  ) : (
+                    <ConnectedPoll {...props} />
+                  );
+                }}
               />
-              <Route path='/results/:id' component={ConnectedPollResult} />
-              <Route path='/poll/:id' component={ConnectedPoll} />
             </div>
           ) : (
             <ConnectedLogin />
@@ -44,10 +56,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ loading, user }) {
+function mapStateToProps({ loading, user, questions }) {
   return {
     loading,
     user,
+    questions,
   };
 }
 

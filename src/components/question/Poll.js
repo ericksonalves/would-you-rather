@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
 import { Button, Form } from 'react-bootstrap';
 import UserAvatar from '../user/UserAvatar';
 import {
@@ -13,7 +12,6 @@ import { handleAddAnswer } from '../../actions/question';
 class Poll extends Component {
   state = {
     answer: 'optionOne',
-    toHome: false,
   };
 
   handleOnAnswerChanged = (event) => {
@@ -31,8 +29,6 @@ class Poll extends Component {
 
     const { dispatch, user } = this.props;
 
-    console.log(user.id);
-
     dispatch(
       handleAddAnswer({
         questionId: this.props.question.id,
@@ -43,17 +39,10 @@ class Poll extends Component {
 
     this.setState(() => ({
       answer: '',
-      toHome: true,
     }));
   };
 
   render() {
-    const { toHome } = this.state;
-
-    if (toHome === true) {
-      return <Redirect to='/' />;
-    }
-
     return (
       <div className='poll-box'>
         <div className='poll-author'>{this.props.author.name} asks:</div>
