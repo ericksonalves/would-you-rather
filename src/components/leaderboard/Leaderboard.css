@@ -23,3 +23,15 @@
   justify-content: center;
   margin: 10px 0px 0px 0px;
 }
+
+.leaderboard-trophy-first {
+  color: #ffd600;
+}
+
+.leaderboard-trophy-second {
+  color: #bdbdbd;
+}
+
+.leaderboard-trophy-third {
+  color: #ffb74d;
+}
