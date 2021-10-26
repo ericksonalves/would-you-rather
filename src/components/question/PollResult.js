@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import UserAvatar from '../user/UserAvatar';
+import Vote from './Vote';
 import {
   findMatchingQuestionId,
   findMatchingUserId,
@@ -9,11 +11,33 @@ import './PollResult.css';
 class PollResult extends Component {
   render() {
     return (
-      <div>
-        <div>Question ID: {this.props.question.id}</div>
-        <div>Asked by: {this.props.author.name}</div>
-        <div>Votes for #1: {this.props.votesForFirst}</div>
-        <div>Votes for #2: {this.props.votesForSecond}</div>
+      <div className='poll-result-box'>
+        <div className='poll-result-author'>
+          Asked by {this.props.author.name}
+        </div>
+        <div className='poll-result-details'>
+          <div className='poll-result-author-avatar'>
+            <UserAvatar avatar={this.props.author.avatarURL} />
+          </div>
+          <div className='poll-result-divider' />
+          <div className='poll-results'>
+            <div className='poll-results-header'>Results:</div>
+            <div className='poll-voting-box'>
+              <Vote
+                highlighted={this.props.answer === 'optionOne'}
+                option='Would you rather find $50 yourself?'
+                total={3}
+                votes={2}
+              />
+              <Vote
+                highlighted={this.props.answer === 'optionTwo'}
+                option='Would you rather have your best friend find $50?'
+                total={3}
+                votes={1}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -32,6 +56,10 @@ function mapStateToProps({ user, users, questions }, props) {
 
   const votes = votesForFirst + votesForSecond;
 
+  const firstOptionVoters = new Set(question.optionOne.votes);
+
+  const answer = firstOptionVoters.has(user.id) ? 'optionOne' : 'optionTwo';
+
   return {
     id,
     author,
@@ -40,6 +68,7 @@ function mapStateToProps({ user, users, questions }, props) {
     votesForFirst,
     votesForSecond,
     votes,
+    answer,
   };
 }
 
