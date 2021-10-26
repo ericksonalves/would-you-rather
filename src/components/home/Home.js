@@ -15,7 +15,7 @@ class Home extends Component {
       const author = findMatchingUserId(question.author, this.props.users);
 
       return (
-        <div className='home-poll'>
+        <div className='home-poll' key={question.id}>
           <PollPreview
             answered={answered}
             author={author.name}
