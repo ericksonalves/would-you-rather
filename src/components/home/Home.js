@@ -12,6 +12,21 @@ import './Home.css';
 
 class Home extends Component {
   renderQuestions = (answered, questions) => {
+    if (questions.length === 0) {
+      return (
+        <div
+          className='home-poll'
+          key={
+            answered === true
+              ? 'no-answered-questions'
+              : 'no-unanswered-questions'
+          }
+        >
+          No available questions :(
+        </div>
+      );
+    }
+
     return questions.sort(questionComparator).map((question) => {
       const author = findMatchingUserId(question.author, this.props.users);
 
