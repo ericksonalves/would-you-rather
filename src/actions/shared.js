@@ -1,4 +1,4 @@
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import * as API from '../data/api';
 import * as storageUtils from '../data/storage';
 import { findMatchingUserId } from '../utils/dataUtils';

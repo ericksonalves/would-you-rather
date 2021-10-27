@@ -1,4 +1,4 @@
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 import * as API from '../data/api';
 
 export const ADD_ANSWER = 'ADD_ANSWER';

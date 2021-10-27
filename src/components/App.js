@@ -1,7 +1,7 @@
 import { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { LoadingBar } from 'react-redux-loading';
+import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
 import ConnectedNavigationBar from './navigation/NavigationBar';
 import ConnectedLogin from './login/Login';
