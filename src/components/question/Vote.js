@@ -3,7 +3,7 @@ import { BsCheckLg } from 'react-icons/bs';
 import './Vote.css';
 
 function Vote(props) {
-  const progress = (100 * props.votes) / props.total;
+  const progress = ((100 * props.votes) / props.total).toFixed(2);
 
   return (
     <div
@@ -19,7 +19,7 @@ function Vote(props) {
       >
         {props.option}
       </div>
-      <ProgressBar now={progress} />
+      <ProgressBar label={`${progress}%`} now={progress} />
       <div
         className={
           props.highlighted === true
