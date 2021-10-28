@@ -25,15 +25,15 @@ class PollResult extends Component {
             <div className='poll-voting-box'>
               <Vote
                 highlighted={this.props.answer === 'optionOne'}
-                option='Would you rather find $50 yourself?'
-                total={3}
-                votes={2}
+                option={`Would you rather ${this.props.question.optionOne.text}?`}
+                total={this.props.votes}
+                votes={this.props.votesForFirst}
               />
               <Vote
                 highlighted={this.props.answer === 'optionTwo'}
-                option='Would you rather have your best friend find $50?'
-                total={3}
-                votes={1}
+                option={`Would you rather ${this.props.question.optionTwo.text}?`}
+                total={this.props.votes}
+                votes={this.props.votesForSecond}
               />
             </div>
           </div>
