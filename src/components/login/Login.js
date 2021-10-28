@@ -1,20 +1,10 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { handleSetLoggedUser } from '../../actions/user';
 import './Login.css';
 import logo from '../../assets/logo.svg';
 
 class Login extends Component {
-  handleSelection = (eventKey) => {
-    const { dispatch, users } = this.props;
-
-    const userId = eventKey;
-    const user = users.find((u) => u.id === userId);
-
-    dispatch(handleSetLoggedUser(user));
-  };
-
   render() {
     return (
       <div className='login'>
@@ -29,7 +19,10 @@ class Login extends Component {
 
           <p className='sign-in-message'>Sign in</p>
 
-          <DropdownButton title='Select user' onSelect={this.handleSelection}>
+          <DropdownButton
+            title='Select user'
+            onSelect={this.props.loginHandler}
+          >
             {this.props.users.map((user) => (
               <Dropdown.Item eventKey={user.id} key={user.id}>
                 {user.name}
@@ -42,10 +35,11 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users, user }) {
+function mapStateToProps({ users, user }, props) {
   return {
     users,
     user,
+    loginHandler: props.loginHandler,
   };
 }
 

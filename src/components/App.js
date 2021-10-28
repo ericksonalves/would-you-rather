@@ -19,6 +19,15 @@ class App extends Component {
     dispatch(handleInitialData());
   }
 
+  loginHandler = (eventKey) => {
+    const { dispatch, users } = this.props;
+
+    const userId = eventKey;
+    const user = users.find((u) => u.id === userId);
+
+    dispatch(handleSetLoggedUser(user));
+  };
+
   logoutHandler = () => {
     const { dispatch } = this.props;
 
@@ -50,7 +59,13 @@ class App extends Component {
             </div>
           ) : (
             <div>
-              <Route exact path='/' component={ConnectedLogin} />
+              <Route
+                exact
+                path='/'
+                render={(props) => {
+                  return <ConnectedLogin loginHandler={this.loginHandler} />;
+                }}
+              />
               <Redirect to='/' />
             </div>
           )}
@@ -60,10 +75,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ loading, user, questions }) {
+function mapStateToProps({ loading, user, users, questions }) {
   return {
     loading,
     user,
+    users,
     questions,
   };
 }
