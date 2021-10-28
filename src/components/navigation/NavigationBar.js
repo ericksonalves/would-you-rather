@@ -18,7 +18,7 @@ class NavigationBar extends Component {
           <Container>
             <Navbar.Brand>Would You Rather</Navbar.Brand>
             <Nav className='me-auto'>
-              <LinkContainer to='/'>
+              <LinkContainer to='/home'>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to='/add'>

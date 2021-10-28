@@ -8,9 +8,8 @@ import ConnectedLogin from './login/Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
 import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
-import ConnectedPollResult from './question/PollResult';
-import ConnectedPoll from './question/Poll';
-import { hasAnsweredQuestion } from '../utils/dataUtils';
+import ConnectedProtectedRoute from './navigation/ProtectedRoute';
+import PollRenderer from './question/PollRenderer';
 import { handleSetLoggedUser } from '../actions/user';
 
 class App extends Component {
@@ -24,8 +23,6 @@ class App extends Component {
     const { dispatch } = this.props;
 
     dispatch(handleSetLoggedUser(null));
-
-    window.location = '/';
   };
 
   render() {
@@ -36,30 +33,20 @@ class App extends Component {
           {this.props.loading === true ? null : this.props.user !== null ? (
             <div>
               <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
-              <Route exact path='/' component={ConnectedHome} />
-              <Route
-                exact
+              <ConnectedProtectedRoute path='/home' element={ConnectedHome} />
+              <ConnectedProtectedRoute
                 path='/leaderboard'
-                component={ConnectedLeaderboard}
+                element={ConnectedLeaderboard}
               />
-              <Route exact path='/add' component={ConnectedCreateNewQuestion} />
-              <Route
+              <ConnectedProtectedRoute
+                path='/add'
+                element={ConnectedCreateNewQuestion}
+              />
+              <ConnectedProtectedRoute
                 path='/questions/:id'
-                render={(props) => {
-                  const questionId = props.match.params.id;
-
-                  const question = this.props.questions.find(
-                    (q) => q.id === questionId
-                  );
-
-                  return hasAnsweredQuestion(this.props.user.id, question) ? (
-                    <ConnectedPollResult {...props} />
-                  ) : (
-                    <ConnectedPoll {...props} />
-                  );
-                }}
+                element={PollRenderer}
               />
-              <Redirect to='/' />
+              <Redirect to='/home' />
             </div>
           ) : (
             <div>
