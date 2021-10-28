@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import './NavigationBar.css';
-import { handleSetLoggedUser } from '../../actions/user';
 
 class NavigationBar extends Component {
-  handleSelection = (eventKey) => {
+  handleLogout = (eventKey) => {
     if (eventKey === 'logout') {
-      const { dispatch } = this.props;
-
-      dispatch(handleSetLoggedUser(null));
+      this.props.logoutHandler();
     }
   };
 
@@ -35,7 +32,7 @@ class NavigationBar extends Component {
               <Nav.Link href='#' disabled>
                 Hello, {this.props.user.name}
               </Nav.Link>
-              <Nav.Link eventKey='logout' onSelect={this.handleSelection}>
+              <Nav.Link eventKey='logout' onSelect={this.handleLogout}>
                 Logout
               </Nav.Link>
             </Nav>
@@ -46,10 +43,11 @@ class NavigationBar extends Component {
   }
 }
 
-function mapStateToProps({ users, user }) {
+function mapStateToProps({ users, user }, props) {
   return {
     users,
     user,
+    logoutHandler: props.logoutHandler,
   };
 }
 

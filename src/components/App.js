@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
@@ -11,6 +11,7 @@ import ConnectedHome from './home/Home';
 import ConnectedPollResult from './question/PollResult';
 import ConnectedPoll from './question/Poll';
 import { hasAnsweredQuestion } from '../utils/dataUtils';
+import { handleSetLoggedUser } from '../actions/user';
 
 class App extends Component {
   componentDidMount() {
@@ -19,6 +20,14 @@ class App extends Component {
     dispatch(handleInitialData());
   }
 
+  logoutHandler = () => {
+    const { dispatch } = this.props;
+
+    dispatch(handleSetLoggedUser(null));
+
+    window.location = '/';
+  };
+
   render() {
     return (
       <Router>
@@ -26,10 +35,14 @@ class App extends Component {
           <LoadingBar />
           {this.props.loading === true ? null : this.props.user !== null ? (
             <div>
-              <ConnectedNavigationBar />
+              <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
               <Route exact path='/' component={ConnectedHome} />
-              <Route path='/leaderboard' component={ConnectedLeaderboard} />
-              <Route path='/add' component={ConnectedCreateNewQuestion} />
+              <Route
+                exact
+                path='/leaderboard'
+                component={ConnectedLeaderboard}
+              />
+              <Route exact path='/add' component={ConnectedCreateNewQuestion} />
               <Route
                 path='/questions/:id'
                 render={(props) => {
@@ -46,9 +59,13 @@ class App extends Component {
                   );
                 }}
               />
+              <Redirect to='/' />
             </div>
           ) : (
-            <ConnectedLogin />
+            <div>
+              <Route exact path='/' component={ConnectedLogin} />
+              <Redirect to='/' />
+            </div>
           )}
         </Fragment>
       </Router>
