@@ -60,9 +60,14 @@ class App extends Component {
           ) : (
             <div>
               <Route
-                exact
                 path='/'
-                render={() => {
+                render={({ history }) => {
+                  const pathName = history.location.pathname;
+
+                  if (pathName !== '/') {
+                    // TODO: handle redirection
+                  }
+
                   return <ConnectedLogin loginHandler={this.loginHandler} />;
                 }}
               />
