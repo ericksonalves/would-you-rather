@@ -45,8 +45,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props.questions);
-
     return (
       <div className='home-box'>
         <Tabs defaultActiveKey='unanswered' className='mb-3'>
