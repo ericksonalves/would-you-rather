@@ -35,10 +35,15 @@ class App extends Component {
   };
 
   render() {
+    const { loading, user } = this.props;
+
+    const isLoading = loading === true;
+    const isAuthorized = user !== null;
+
     return (
       <Fragment>
         <LoadingBar />
-        {this.props.loading === true ? null : this.props.user !== null ? (
+        {isLoading ? null : isAuthorized ? (
           <div>
             <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
             <ConnectedProtectedRoute path='/home' element={ConnectedHome} />
