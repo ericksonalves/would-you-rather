@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { Redirect, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
@@ -36,46 +36,44 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Fragment>
-          <LoadingBar />
-          {this.props.loading === true ? null : this.props.user !== null ? (
-            <div>
-              <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
-              <ConnectedProtectedRoute path='/home' element={ConnectedHome} />
-              <ConnectedProtectedRoute
-                path='/leaderboard'
-                element={ConnectedLeaderboard}
-              />
-              <ConnectedProtectedRoute
-                path='/add'
-                element={ConnectedCreateNewQuestion}
-              />
-              <ConnectedProtectedRoute
-                path='/questions/:id'
-                element={PollRenderer}
-              />
-              <Redirect to='/home' />
-            </div>
-          ) : (
-            <div>
-              <Route
-                path='/'
-                render={({ history }) => {
-                  const pathName = history.location.pathname;
+      <Fragment>
+        <LoadingBar />
+        {this.props.loading === true ? null : this.props.user !== null ? (
+          <div>
+            <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
+            <ConnectedProtectedRoute path='/home' element={ConnectedHome} />
+            <ConnectedProtectedRoute
+              path='/leaderboard'
+              element={ConnectedLeaderboard}
+            />
+            <ConnectedProtectedRoute
+              path='/add'
+              element={ConnectedCreateNewQuestion}
+            />
+            <ConnectedProtectedRoute
+              path='/questions/:id'
+              element={PollRenderer}
+            />
+            <Redirect to='/home' />
+          </div>
+        ) : (
+          <div>
+            <Route
+              path='/'
+              render={({ history }) => {
+                const pathName = history.location.pathname;
 
-                  if (pathName !== '/') {
-                    // TODO: handle redirection
-                  }
+                if (pathName !== '/') {
+                  // TODO: handle redirection
+                }
 
-                  return <ConnectedLogin loginHandler={this.loginHandler} />;
-                }}
-              />
-              <Redirect to='/' />
-            </div>
-          )}
-        </Fragment>
-      </Router>
+                return <ConnectedLogin loginHandler={this.loginHandler} />;
+              }}
+            />
+            <Redirect to='/' />
+          </div>
+        )}
+      </Fragment>
     );
   }
 }
