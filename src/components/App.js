@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
@@ -20,14 +20,12 @@ class App extends Component {
   }
 
   loginHandler = (eventKey) => {
-    const { dispatch, history, users } = this.props;
+    const { dispatch, users } = this.props;
 
     const userId = eventKey;
     const user = users.find((u) => u.id === userId);
 
     dispatch(handleSetLoggedUser(user));
-
-    history.push('/home');
   };
 
   logoutHandler = () => {
@@ -76,8 +74,10 @@ class App extends Component {
             <Route
               exact
               path='/'
-              render={() => {
-                return <ConnectedLogin loginHandler={this.loginHandler} />;
+              render={(props) => {
+                return (
+                  <ConnectedLogin {...props} loginHandler={this.loginHandler} />
+                );
               }}
             />
           </Fragment>
@@ -96,4 +96,4 @@ function mapStateToProps({ loading, user, users, questions }) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default connect(mapStateToProps)(App);
