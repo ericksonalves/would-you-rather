@@ -12,7 +12,9 @@ class NavigationBar extends Component {
   };
 
   render() {
-    return (
+    const { isAuthorized } = this.props;
+
+    return isAuthorized ? (
       <div>
         <Navbar bg='primary' variant='dark'>
           <Container>
@@ -39,14 +41,17 @@ class NavigationBar extends Component {
           </Container>
         </Navbar>
       </div>
-    );
+    ) : null;
   }
 }
 
 function mapStateToProps({ users, user }, props) {
+  const isAuthorized = user !== null;
+
   return {
     users,
     user,
+    isAuthorized: isAuthorized,
     logoutHandler: props.logoutHandler,
   };
 }

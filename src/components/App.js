@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
@@ -8,7 +8,7 @@ import ConnectedLogin from './login/Login';
 import ConnectedLeaderboard from './leaderboard/Leaderboard';
 import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
-import ConnectedProtectedRoute from './navigation/ProtectedRoute';
+import ProtectedRoute from './navigation/ProtectedRoute';
 import PollRenderer from './question/PollRenderer';
 import { handleSetLoggedUser } from '../actions/user';
 
@@ -20,12 +20,14 @@ class App extends Component {
   }
 
   loginHandler = (eventKey) => {
-    const { dispatch, users } = this.props;
+    const { dispatch, history, users } = this.props;
 
     const userId = eventKey;
     const user = users.find((u) => u.id === userId);
 
     dispatch(handleSetLoggedUser(user));
+
+    history.push('/home');
   };
 
   logoutHandler = () => {
@@ -37,46 +39,48 @@ class App extends Component {
   render() {
     const { loading, user } = this.props;
 
-    const isLoading = loading === true;
     const isAuthorized = user !== null;
+    const isLoading = loading === true;
 
     return (
       <Fragment>
         <LoadingBar />
-        {isLoading ? null : isAuthorized ? (
-          <div>
+        {!isLoading && (
+          <Fragment>
             <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
-            <ConnectedProtectedRoute path='/home' element={ConnectedHome} />
-            <ConnectedProtectedRoute
+
+            <ProtectedRoute
+              isAuthorized={isAuthorized}
+              path='/home'
+              component={ConnectedHome}
+            />
+
+            <ProtectedRoute
+              isAuthorized={isAuthorized}
               path='/leaderboard'
-              element={ConnectedLeaderboard}
+              component={ConnectedLeaderboard}
             />
-            <ConnectedProtectedRoute
+
+            <ProtectedRoute
+              isAuthorized={isAuthorized}
               path='/add'
-              element={ConnectedCreateNewQuestion}
+              component={ConnectedCreateNewQuestion}
             />
-            <ConnectedProtectedRoute
+
+            <ProtectedRoute
+              isAuthorized={isAuthorized}
               path='/questions/:id'
-              element={PollRenderer}
+              component={PollRenderer}
             />
-            <Redirect to='/home' />
-          </div>
-        ) : (
-          <div>
+
             <Route
+              exact
               path='/'
-              render={({ history }) => {
-                const pathName = history.location.pathname;
-
-                if (pathName !== '/') {
-                  // TODO: handle redirection
-                }
-
+              render={() => {
                 return <ConnectedLogin loginHandler={this.loginHandler} />;
               }}
             />
-            <Redirect to='/' />
-          </div>
+          </Fragment>
         )}
       </Fragment>
     );
@@ -92,4 +96,4 @@ function mapStateToProps({ loading, user, users, questions }) {
   };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
