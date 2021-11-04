@@ -48,7 +48,7 @@ class CreateNewQuestion extends Component {
     const { firstOption, secondOption, toHome } = this.state;
 
     if (toHome === true) {
-      return <Redirect to='/' />;
+      return <Redirect to='/home' />;
     }
 
     return (
