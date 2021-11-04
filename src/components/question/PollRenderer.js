@@ -12,7 +12,7 @@ class PollRenderer extends Component {
 
     const question = questions.find((q) => q.id === questionId);
 
-    return question !== null ? (
+    return question ? (
       hasAnsweredQuestion(user.id, question) ? (
         <ConnectedPollResult {...this.props} />
       ) : (
