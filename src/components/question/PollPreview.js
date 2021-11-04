@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import UserAvatar from '../user/UserAvatar';
 import './PollPreview.css';
 
-function PollPreview(props) {
+const PollPreview = (props) => {
   return (
     <div className='poll-preview-box'>
       <div className='poll-preview-author'>{props.author} asks:</div>
@@ -24,6 +24,6 @@ function PollPreview(props) {
       </div>
     </div>
   );
-}
+};
 
 export default PollPreview;

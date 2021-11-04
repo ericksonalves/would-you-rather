@@ -2,7 +2,7 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { BsCheckLg } from 'react-icons/bs';
 import './Vote.css';
 
-function Vote(props) {
+const Vote = (props) => {
   const progress = ((100 * props.votes) / props.total).toFixed(2);
 
   return (
@@ -31,6 +31,6 @@ function Vote(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Vote;

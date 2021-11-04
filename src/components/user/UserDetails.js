@@ -1,7 +1,7 @@
-import { UserScoreDetails } from './UserScoreDetails';
+import UserScoreDetails from './UserScoreDetails';
 import './UserDetails.css';
 
-export default function UserDetails(props) {
+const UserDetails = (props) => {
   return (
     <div className='user-details-box'>
       <div className='user-details-name'>{props.name}</div>
@@ -18,4 +18,6 @@ export default function UserDetails(props) {
       </div>
     </div>
   );
-}
+};
+
+export default UserDetails;

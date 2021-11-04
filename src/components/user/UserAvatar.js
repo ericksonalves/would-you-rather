@@ -1,6 +1,6 @@
 import './UserAvatar.css';
 
-export default function UserAvatar(props) {
+const UserAvatar = (props) => {
   return (
     <div className='user-avatar-box'>
       <img
@@ -10,4 +10,6 @@ export default function UserAvatar(props) {
       ></img>
     </div>
   );
-}
+};
+
+export default UserAvatar;
