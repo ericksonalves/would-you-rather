@@ -1,0 +1,11 @@
+.not-found-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.not-found-message {
+  font-size: large;
+  font-weight: bold;
+}

@@ -1,5 +1,5 @@
 import { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingBar from 'react-redux-loading-bar';
 import { handleInitialData } from '../actions/shared';
@@ -10,6 +10,7 @@ import ConnectedCreateNewQuestion from './question/CreateNewQuestion';
 import ConnectedHome from './home/Home';
 import ProtectedRoute from './navigation/ProtectedRoute';
 import PollRenderer from './question/PollRenderer';
+import NotFound from './error/NotFound';
 import { handleSetLoggedUser } from '../actions/user';
 
 class App extends Component {
@@ -47,39 +48,54 @@ class App extends Component {
           <Fragment>
             <ConnectedNavigationBar logoutHandler={this.logoutHandler} />
 
-            <ProtectedRoute
-              isAuthorized={isAuthorized}
-              path='/home'
-              component={ConnectedHome}
-            />
+            <Switch>
+              <ProtectedRoute
+                isAuthorized={isAuthorized}
+                exact
+                path='/home'
+                component={ConnectedHome}
+              />
 
-            <ProtectedRoute
-              isAuthorized={isAuthorized}
-              path='/leaderboard'
-              component={ConnectedLeaderboard}
-            />
+              <ProtectedRoute
+                isAuthorized={isAuthorized}
+                exact
+                path='/leaderboard'
+                component={ConnectedLeaderboard}
+              />
 
-            <ProtectedRoute
-              isAuthorized={isAuthorized}
-              path='/add'
-              component={ConnectedCreateNewQuestion}
-            />
+              <ProtectedRoute
+                isAuthorized={isAuthorized}
+                exact
+                path='/add'
+                component={ConnectedCreateNewQuestion}
+              />
 
-            <ProtectedRoute
-              isAuthorized={isAuthorized}
-              path='/questions/:id'
-              component={PollRenderer}
-            />
+              <ProtectedRoute
+                isAuthorized={isAuthorized}
+                exact
+                path='/questions/:id'
+                component={PollRenderer}
+              />
 
-            <Route
-              exact
-              path='/'
-              render={(props) => {
-                return (
-                  <ConnectedLogin {...props} loginHandler={this.loginHandler} />
-                );
-              }}
-            />
+              <Route
+                exact
+                path='/'
+                render={(props) => {
+                  return (
+                    <ConnectedLogin
+                      {...props}
+                      loginHandler={this.loginHandler}
+                    />
+                  );
+                }}
+              />
+
+              <Route
+                render={(props) => {
+                  return <NotFound {...props} isAuthorized={isAuthorized} />;
+                }}
+              />
+            </Switch>
           </Fragment>
         )}
       </Fragment>

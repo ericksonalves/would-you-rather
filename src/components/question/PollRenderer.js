@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import ConnectedPollResult from './PollResult';
 import ConnectedPoll from './Poll';
 import { hasAnsweredQuestion } from '../../utils/dataUtils';
@@ -19,7 +20,7 @@ class PollRenderer extends Component {
         <ConnectedPoll {...this.props} />
       )
     ) : (
-      <div>Page not found :(</div>
+      <Redirect to='/404' />
     );
   }
 }
